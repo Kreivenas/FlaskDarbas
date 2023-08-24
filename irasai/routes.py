@@ -88,20 +88,6 @@ def all_records():
     visi_irasai = Irasas.query.paginate(page=page, per_page=3)
     return render_template("visi_irasai.html", visi_irasai=visi_irasai, datetime=datetime.datetime)
 
-# @app.route("/registruotis", methods=['GET', 'POST'])
-# def registruotis():
-#     form = RegistracijosForma()
-#     if form.validate_on_submit():
-#         vardas = form.vardas.data
-#         el_pastas = form.el_pastas.data
-#         slaptazodis = bcrypt.generate_password_hash(form.slaptazodis.data).decode('utf-8')
-#         vartotojas = Vartotojas(vardas=vardas, el_pastas=el_pastas, slaptazodis=slaptazodis)
-#         db.session.add(vartotojas)
-#         db.session.commit()
-#         flash("Sekmingai prisiregistravote! Galite prisijungti", 'success')
-#         return redirect(url_for('index'))
-#     return render_template("registruotis.html", form=form)
-
 @app.route("/registruotis", methods=['GET', 'POST'])
 def registruotis():
     form = RegistracijosForma()

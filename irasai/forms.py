@@ -14,6 +14,7 @@ from irasai import app
 from .models import Vartotojas
 import re
 
+# Tikrina slaptazodzio sudetinguma
 
 def utility_password_check(password):
     # calculating the length
