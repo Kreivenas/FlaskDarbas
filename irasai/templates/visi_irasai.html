@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Čia yra visi įrašai</h1>
+
+{% if visi_irasai.items %}
+  {% for irasas in visi_irasai.items %}
+    <hr>
+    <p>Autorius: {{ irasas.vartotojas.vardas }}</p>
+    <p>Irasas: {{ irasas.irasas }}</p>
+    <p>{{ irasas.data }}</p>
+    <p>Postinimo data: {{ datetime.strftime(irasas.data, "%Y-%m-%d %H:%M:%S") }}</p>
+  {% endfor %}
+  
+  <div class="pagination">
+    <span class="step-links">
+      {% if visi_irasai.has_prev %}
+        <a class="btn btn-outline-info mb-4" href="?page=1">&laquo; first</a>
+        <a class="btn btn-outline-info mb-4" href="?page={{ visi_irasai.prev_num }}">previous</a>
+      {% endif %}
+      
+      <span class="current">
+        Page {{ visi_irasai.page }} of {{ visi_irasai.pages }}.
+      </span>
+      
+      {% if visi_irasai.has_next %}
+        <a class="btn btn-outline-info mb-4" href="?page={{ visi_irasai.next_num }}">next</a>
+        <a class="btn btn-outline-info mb-4" href="?page={{ visi_irasai.pages }}">last &raquo;</a>
+      {% endif %}
+    </span>
+  </div>
+  
+{% else %}
+  <p>No records available.</p>
+{% endif %}
+
+{% endblock %}
